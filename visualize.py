@@ -29,11 +29,11 @@ st.header("📊 Métriques des Modèles")
 df_metrics = load_data("metrics")
 if not df_metrics.empty:
     df_metrics = df_metrics.drop_duplicates().reset_index(drop=True)
-    st.dataframe(df_metrics, use_container_width=True)
+    st.dataframe(df_metrics, width="stretch")
     
     # Graphique de comparaison simple
     fig_metrics = px.bar(df_metrics, x="model_name", y=["r2", "rmse"], barmode="group", title="Comparaison R2 et RMSE")
-    st.plotly_chart(fig_metrics, use_container_width=True)
+    st.plotly_chart(fig_metrics, width="stretch")
 else:
     st.warning("Aucune métrique trouvée.")
 
@@ -57,9 +57,9 @@ if not df_preds.empty:
         labels={"total_amount": "Prix Réel ($)", "prediction": "Prix Prédit ($)"},
         opacity=0.5
     )
-    st.plotly_chart(fig_scatter, use_container_width=True)
+    st.plotly_chart(fig_scatter, width="stretch")
     
     st.subheader("Extrait des données")
-    st.dataframe(df_preds.head(50), use_container_width=True)
+    st.dataframe(df_preds.head(50), width="stretch")
 else:
     st.warning("Aucune prédiction trouvée.")
